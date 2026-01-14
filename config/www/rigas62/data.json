@@ -1,0 +1,89 @@
+{
+  "meta": {
+    "name": "Rigas62 Mājas Dokumentācija",
+    "version": "1.0.0",
+    "lastUpdated": "2026-01-14"
+  },
+  "rooms": [
+    {
+      "id": "virtuve",
+      "name": "Virtuve",
+      "floor": 1,
+      "description": "Galvenā virtuves telpa ar mūsdienīgām ierīcēm.",
+      "photos": [],
+      "videos": [
+        {
+          "file": "virtuves_durvis.mp4",
+          "title": "Virtuves durvis",
+          "description": "",
+          "hashtags": ["#virtuve", "#drošība", "#durvis"],
+          "thumbnail": "virtuves_durvis.jpg"
+        }
+      ],
+      "equipment": []
+    },
+    {
+      "id": "ieeja",
+      "name": "Ieeja",
+      "floor": 1,
+      "description": "Mājas ieeja ar drēbju skapi un apavu plauktu.",
+      "photos": [],
+      "videos": [],
+      "equipment": []
+    },
+    {
+      "id": "gaitenis",
+      "name": "Gaitenis",
+      "floor": 1,
+      "description": "Centrālais gaitenis, kas savieno visas telpas.",
+      "photos": [],
+      "videos": [],
+      "equipment": []
+    },
+    {
+      "id": "viesistaba",
+      "name": "Viesistaba",
+      "floor": 1,
+      "description": "Viesu istaba ar dīvānu un televizoru.",
+      "photos": [],
+      "videos": [],
+      "equipment": []
+    },
+    {
+      "id": "vannas-istaba-bernu",
+      "name": "Vannas istaba (bērnu)",
+      "floor": 1,
+      "description": "Bērnu vannas istaba ar dušu un vannu.",
+      "photos": [],
+      "videos": [],
+      "equipment": []
+    },
+    {
+      "id": "vannas-istaba-vecaku",
+      "name": "Vannas istaba (vecāku)",
+      "floor": 1,
+      "description": "Vecāku vannas istaba ar dušu.",
+      "photos": [],
+      "videos": [],
+      "equipment": []
+    },
+    {
+      "id": "tehniska-telpa",
+      "name": "Tehniskā telpa",
+      "floor": 1,
+      "description": "Tehniskā telpa ar apkures sistēmu, ūdens sildītāju un elektrības sadali.",
+      "photos": [],
+      "videos": [],
+      "equipment": []
+    },
+    {
+      "id": "dzivojama-istaba",
+      "name": "Dzīvojamā istaba",
+      "floor": 1,
+      "description": "Galvenā dzīvojamā telpa ar dīvānu un izklaides sistēmu.",
+      "photos": [],
+      "videos": [],
+      "equipment": []
+    }
+  ]
+}
