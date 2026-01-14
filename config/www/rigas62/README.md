@@ -1,6 +1,10 @@
 # Rigas62 Home Documentation System
 
-A self-contained, offline-capable home documentation web application designed for Home Assistant.
+A self-contained, offline-capable home documentation web application hosted on GitHub Pages.
+
+## Live Site
+
+**https://krishels.github.io/Rigas62/**
 
 ## Features
 
@@ -10,15 +14,18 @@ A self-contained, offline-capable home documentation web application designed fo
 - **Dark/Light Mode**: Toggle between themes with preference saved
 - **Offline Support**: Service worker caches assets for offline viewing
 - **Mobile Responsive**: Works on all device sizes
-- **No External Dependencies**: Runs entirely locally
+- **Login Protection**: Simple authentication to protect content
+- **No External Dependencies**: Runs entirely on static hosting
 
 ## Folder Structure
 
 ```
 /config/www/rigas62/
 ├── index.html          # Main application
+├── login.html          # Login page
 ├── styles.css          # All styling
 ├── app.js              # Application logic
+├── auth.js             # Authentication module
 ├── data.json           # Your content database
 ├── sw.js               # Service worker for offline
 ├── manifest.json       # PWA manifest
@@ -29,73 +36,22 @@ A self-contained, offline-capable home documentation web application designed fo
 │   └── icon-512.svg
 └── media/
     ├── photos/         # Room photos (jpg, png, webp)
+    ├── thumbnails/     # Video thumbnails
     └── videos/         # Room videos (mp4)
 ```
 
-## Home Assistant Integration
+## Deployment
 
-### Option 1: Direct www Folder Access (Simplest)
+This project uses GitHub Actions to deploy to GitHub Pages automatically.
 
-1. Copy the `rigas62` folder to your Home Assistant's `/config/www/` directory
-2. Access at: `http://your-ha-ip:8123/local/rigas62/index.html`
+### Setup
 
-### Option 2: Panel Iframe (Sidebar Integration)
-
-Add to your `configuration.yaml`:
-
-```yaml
-panel_iframe:
-  rigas62:
-    title: "Home Docs"
-    icon: mdi:home-search
-    url: "/local/rigas62/index.html"
-```
-
-Restart Home Assistant, and "Home Docs" will appear in your sidebar.
-
-### Option 3: Lovelace Card
-
-Add a webpage card to any dashboard:
-
-```yaml
-type: iframe
-url: /local/rigas62/index.html
-aspect_ratio: 16:9
-```
-
-### Option 4: Custom Domain (rigas62.lv)
-
-If you want to access via `rigas62.lv`:
-
-#### Using Nginx Proxy Manager:
-
-1. Create a new proxy host:
-   - Domain: `rigas62.lv`
-   - Scheme: `http`
-   - Forward Hostname: `your-ha-internal-ip`
-   - Forward Port: `8123`
-   - Custom Location: `/` → `/local/rigas62/`
-
-2. Add SSL certificate (Let's Encrypt)
-
-#### Using Home Assistant Nginx Add-on:
-
-```nginx
-server {
-    listen 80;
-    server_name rigas62.lv;
-
-    location / {
-        proxy_pass http://homeassistant:8123/local/rigas62/;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-    }
-}
-```
-
-#### DNS Configuration:
-
-Point `rigas62.lv` to your Home Assistant server's IP address in your local DNS (Pi-hole, router, or hosts file).
+1. Push code to the `main` branch
+2. Add repository secrets in GitHub Settings → Secrets → Actions:
+   - `AUTH_USER`: Login username
+   - `AUTH_PASS`: Login password
+3. Enable GitHub Pages with "GitHub Actions" as source
+4. Access at: `https://krishels.github.io/Rigas62/`
 
 ## Adding Your Content
 
@@ -117,7 +73,8 @@ The `data.json` file contains all your home documentation. Structure:
           "file": "video-filename.mp4",
           "title": "Video Title",
           "description": "What this video shows",
-          "hashtags": ["#plumbing", "#repair", "#diy"]
+          "hashtags": ["#plumbing", "#repair", "#diy"],
+          "thumbnail": "thumbnail.jpg"
         }
       ],
       "equipment": ["Item 1", "Item 2"]
@@ -135,9 +92,10 @@ The `data.json` file contains all your home documentation. Structure:
 ### Adding Videos
 
 1. Place videos in `media/videos/`
-2. Reference by filename in `data.json`
-3. Recommended format: MP4 (H.264)
-4. Add relevant hashtags for filtering
+2. Add thumbnail to `media/thumbnails/`
+3. Reference by filename in `data.json`
+4. Recommended format: MP4 (H.264)
+5. Add relevant hashtags for filtering
 
 ### Hashtag System
 
