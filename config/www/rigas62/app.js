@@ -499,8 +499,34 @@
     // ========================================
     // Video Modal
     // ========================================
+    function isExternalUrl(url) {
+        return url.startsWith('http://') || url.startsWith('https://');
+    }
+
     function openVideoModal(video) {
-        elements.videoPlayer.src = `media/videos/${video.file}`;
+        const videoContainer = document.getElementById('videoContainer');
+
+        if (isExternalUrl(video.file)) {
+            // External URL (Google Drive, YouTube, etc.) - use iframe
+            videoContainer.innerHTML = `
+                <iframe
+                    src="${video.file}"
+                    width="100%"
+                    height="100%"
+                    frameborder="0"
+                    allow="autoplay; encrypted-media"
+                    allowfullscreen>
+                </iframe>
+            `;
+        } else {
+            // Local file - use video element
+            videoContainer.innerHTML = `
+                <video id="videoPlayer" controls>
+                    <source src="media/videos/${video.file}" type="video/mp4">
+                </video>
+            `;
+        }
+
         elements.videoTitle.textContent = video.title;
         elements.videoDescription.textContent = video.description || '';
         elements.videoHashtags.innerHTML = video.hashtags?.map(tag => {
@@ -514,8 +540,12 @@
 
     function closeVideoModal() {
         elements.videoModal.classList.add('hidden');
-        elements.videoPlayer.pause();
-        elements.videoPlayer.src = '';
+        const videoContainer = document.getElementById('videoContainer');
+        const videoPlayer = videoContainer.querySelector('video');
+        if (videoPlayer) {
+            videoPlayer.pause();
+        }
+        videoContainer.innerHTML = '';
         document.body.style.overflow = '';
     }
 

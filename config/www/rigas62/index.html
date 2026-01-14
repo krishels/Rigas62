@@ -31,7 +31,7 @@
                     type="text"
                     id="globalSearch"
                     class="search-input"
-                    placeholder="Meklēt istabas, aprīkojumu, hashtags..."
+                    placeholder="Meklēt istabas, aprīkojumu..."
                     autocomplete="off"
                 >
                 <div id="searchSuggestions" class="search-suggestions hidden"></div>
@@ -107,9 +107,11 @@
         <div id="videoModal" class="modal hidden">
             <div class="modal-content">
                 <button class="modal-close" id="closeModal">&times;</button>
-                <video id="videoPlayer" controls>
-                    <source src="" type="video/mp4">
-                </video>
+                <div id="videoContainer">
+                    <video id="videoPlayer" controls>
+                        <source src="" type="video/mp4">
+                    </video>
+                </div>
                 <div class="video-info">
                     <h3 id="videoTitle"></h3>
                     <p id="videoDescription"></p>
