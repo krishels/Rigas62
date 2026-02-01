@@ -80,7 +80,36 @@
       "floor": 1,
       "description": "Tehniskā telpa ar apkures sistēmu, ūdens sildītāju un elektrības sadali.",
       "photos": [],
-      "videos": [],
+      "videos": [
+        {
+          "file": "https://drive.google.com/file/d/1c0jeX9YDOQZsVAfao2qe9g1qKpEyuSfb/preview",
+          "title": "Žāvētāja tīrīšana",
+          "description": "",
+          "hashtags": ["#tehniskā telpa", "#žāvētājs", "#tīrīšana"],
+          "thumbnail": "tehniska_zavetajs_tirisana.jpg"
+        },
+        {
+          "file": "https://drive.google.com/file/d/17vRzgruvSPDEcnT-_6pzKzIzxs-61wri/preview",
+          "title": "Žāvētājs",
+          "description": "",
+          "hashtags": ["#tehniskā telpa", "#žāvētājs"],
+          "thumbnail": "tehniska_zavetajs.jpg"
+        },
+        {
+          "file": "https://drive.google.com/file/d/1GBbEpb5Duo3wjz4Lz-5V7lRSjseL0V16/preview",
+          "title": "Veļasmašīnas izslēgšana",
+          "description": "",
+          "hashtags": ["#tehniskā telpa", "#veļasmašīna", "#veļa", "#izslēgšana"],
+          "thumbnail": "tehniska_zavetajs.jpg"
+        },
+        {
+          "file": "https://drive.google.com/file/d/1_FodHKMUTdZRaijkIOvzyUUPVqF17nIZ/preview",
+          "title": "Veļasmašīnas palaišana",
+          "description": "",
+          "hashtags": ["#tehniskā telpa", "#veļasmašīna", "#veļa", "#palaišana"],
+          "thumbnail": "tehniska_zavetajs.jpg"
+        }
+      ],
       "equipment": []
     }
   ]
