@@ -18,44 +18,36 @@
           "description": "",
           "hashtags": ["#virtuve", "#drošība", "#durvis"],
           "thumbnail": "virtuves_durvis.jpg"
+        },
+        {
+          "file": "https://drive.google.com/file/d/1Aqj8YmhDU4MUvFRJFmQBFLD4kBcoxS9i/preview",
+          "title": "Plīts",
+          "description": "",
+          "hashtags": ["#plīts", "#virtuve"],
+          "thumbnail": "virtuve_plits.jpg"
+        },
+        {
+          "file": "https://drive.google.com/file/d/1OPVayOOnChlPaFZZKwjOR1T_aD7zq4xy/preview",
+          "title": "Mikroviļņu krāsns",
+          "description": "",
+          "hashtags": ["#virtuve", "#mikrene", "#mikroviļņi"],
+          "thumbnail": "virtuve_mikrene.jpg"
+        },
+        {
+          "file": "https://drive.google.com/file/d/11ScX4wOoD-PgdiToAmCnI_hi9LC1NDGk/preview",
+          "title": "Cepeškrāsns",
+          "description": "",
+          "hashtags": ["#virtuve", "#krāsns", "#cepeškrāsns"],
+          "thumbnail": "virtuve_krasns.jpg"
+        },
+        {
+          "file": "https://drive.google.com/file/d/1U-Qq7GBbpEIPlF4CXxUenh5VgMM2Vc0j/preview",
+          "title": "Kafijas automāts",
+          "description": "",
+          "hashtags": ["#virtuve", "#kafija", "#kafijas automāts"],
+          "thumbnail": "virtuve_kafija.jpg"
         }
       ],
-      "equipment": []
-    },
-    {
-      "id": "ieeja",
-      "name": "Ieeja",
-      "floor": 1,
-      "description": "Mājas ieeja ar drēbju skapi un apavu plauktu.",
-      "photos": [],
-      "videos": [],
-      "equipment": []
-    },
-    {
-      "id": "gaitenis",
-      "name": "Gaitenis",
-      "floor": 1,
-      "description": "Centrālais gaitenis, kas savieno visas telpas.",
-      "photos": [],
-      "videos": [],
-      "equipment": []
-    },
-    {
-      "id": "viesistaba",
-      "name": "Viesistaba",
-      "floor": 1,
-      "description": "Viesu istaba ar dīvānu un televizoru.",
-      "photos": [],
-      "videos": [],
-      "equipment": []
-    },
-    {
-      "id": "vannas-istaba-bernu",
-      "name": "Vannas istaba (bērnu)",
-      "floor": 1,
-      "description": "Bērnu vannas istaba ar dušu un vannu.",
-      "photos": [],
-      "videos": [],
       "equipment": []
     },
     {
@@ -64,7 +56,22 @@
       "floor": 1,
       "description": "Vecāku vannas istaba ar dušu.",
       "photos": [],
-      "videos": [],
+      "videos": [
+        {
+          "file": "https://drive.google.com/file/d/1c2UANqIYiNl6mLyObj8XBHBWwcRR3JBe/preview",
+          "title": "Dvieļu žāvētājs",
+          "description": "",
+          "hashtags": ["#vannas istaba", "#dvieļu žāvētājs"],
+          "thumbnail": "vanna_dvieli.jpg"
+        },
+        {
+          "file": "https://drive.google.com/file/d/1fJ1GxfHEnqvVAYebcrN-ZW_IRPTP_P-_/preview",
+          "title": "Duša",
+          "description": "",
+          "hashtags": ["#vannas istaba", "#duša"],
+          "thumbnail": "vanna_dusa.jpg"
+        }
+      ],
       "equipment": []
     },
     {
@@ -72,15 +79,6 @@
       "name": "Tehniskā telpa",
       "floor": 1,
       "description": "Tehniskā telpa ar apkures sistēmu, ūdens sildītāju un elektrības sadali.",
-      "photos": [],
-      "videos": [],
-      "equipment": []
-    },
-    {
-      "id": "dzivojama-istaba",
-      "name": "Dzīvojamā istaba",
-      "floor": 1,
-      "description": "Galvenā dzīvojamā telpa ar dīvānu un izklaides sistēmu.",
       "photos": [],
       "videos": [],
       "equipment": []

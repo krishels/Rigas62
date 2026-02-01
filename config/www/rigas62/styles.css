@@ -398,6 +398,92 @@ button {
 }
 
 /* ========================================
+   Recent Videos Section
+   ======================================== */
+
+.recent-videos-section {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid var(--border);
+}
+
+.recent-videos-section.hidden {
+    display: none;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: var(--text-primary);
+}
+
+.video-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.video-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.video-card-image {
+    aspect-ratio: 16/9;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    background-color: var(--bg-secondary);
+}
+
+.video-card-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background var(--transition), transform var(--transition);
+}
+
+.video-card:hover .video-card-play {
+    background: var(--accent);
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.video-card-play svg {
+    width: 24px;
+    height: 24px;
+    color: white;
+    margin-left: 4px;
+}
+
+.video-card-info {
+    padding: 15px;
+}
+
+.video-card-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: var(--text-primary);
+}
+
+.video-card-room {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+/* ========================================
    Room Cards
    ======================================== */
 

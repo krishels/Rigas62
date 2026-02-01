@@ -41,7 +41,9 @@
         themeToggle: document.getElementById('themeToggle'),
         viewToggle: document.getElementById('viewToggle'),
         noResults: document.getElementById('noResults'),
-        offlineIndicator: document.getElementById('offlineIndicator')
+        offlineIndicator: document.getElementById('offlineIndicator'),
+        recentVideosSection: document.getElementById('recentVideosSection'),
+        recentVideosContainer: document.getElementById('recentVideosContainer')
     };
 
     // ========================================
@@ -91,6 +93,7 @@
             elements.floorNav.style.display = 'none';
         }
         renderRooms();
+        renderRecentVideos();
         setupEventListeners();
         handleUrlHash();
     }
@@ -139,6 +142,65 @@
 
         elements.noResults.classList.add('hidden');
         elements.roomsContainer.innerHTML = filtered.map(room => createRoomCard(room)).join('');
+    }
+
+    function getAllVideos() {
+        if (!state.data?.rooms) return [];
+        const videos = [];
+        state.data.rooms.forEach(room => {
+            if (room.videos) {
+                room.videos.forEach((video, index) => {
+                    videos.push({
+                        ...video,
+                        roomId: room.id,
+                        roomName: room.name,
+                        videoIndex: index
+                    });
+                });
+            }
+        });
+        return videos;
+    }
+
+    function renderRecentVideos() {
+        if (!elements.recentVideosContainer || !elements.recentVideosSection) return;
+
+        const allVideos = getAllVideos();
+
+        if (allVideos.length === 0) {
+            elements.recentVideosSection.classList.add('hidden');
+            return;
+        }
+
+        elements.recentVideosSection.classList.remove('hidden');
+        elements.recentVideosContainer.innerHTML = allVideos.map(video => createVideoCard(video)).join('');
+    }
+
+    function createVideoCard(video) {
+        const thumbnailUrl = video.thumbnail
+            ? `media/thumbnails/${video.thumbnail}`
+            : 'data:image/svg+xml,' + encodeURIComponent(`
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 225" fill="none">
+                    <rect width="400" height="225" fill="#252542"/>
+                    <polygon points="175,90 175,135 215,112.5" fill="#6c5ce7"/>
+                </svg>
+            `);
+
+        return `
+            <article class="video-card" data-room-id="${video.roomId}" data-video-index="${video.videoIndex}">
+                <div class="video-card-image" style="background-image: url('${thumbnailUrl}')">
+                    <div class="video-card-play">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="5 3 19 12 5 21 5 3"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="video-card-info">
+                    <div class="video-card-title">${escapeHtml(video.title)}</div>
+                    <div class="video-card-room">${escapeHtml(video.roomName)}</div>
+                </div>
+            </article>
+        `;
     }
 
     function getRoomIcon(roomId) {
@@ -210,6 +272,9 @@
         state.currentView = 'room';
 
         elements.roomsContainer.classList.add('hidden');
+        if (elements.recentVideosSection) {
+            elements.recentVideosSection.classList.add('hidden');
+        }
         if (elements.floorNav) {
             elements.floorNav.classList.add('hidden');
         }
@@ -350,15 +415,14 @@
 
     function updateBreadcrumb(room = null) {
         if (room) {
+            elements.breadcrumb.classList.remove('hidden');
             elements.breadcrumb.innerHTML = `
                 <a href="#" data-view="home">Sākums</a>
                 <span>/</span>
                 <span>${escapeHtml(room.name)}</span>
             `;
         } else {
-            elements.breadcrumb.innerHTML = `
-                <a href="#" data-view="home">Sākums</a>
-            `;
+            elements.breadcrumb.classList.add('hidden');
         }
     }
 
@@ -634,6 +698,9 @@
 
         elements.roomDetail.classList.add('hidden');
         elements.roomsContainer.classList.remove('hidden');
+        if (elements.recentVideosSection) {
+            elements.recentVideosSection.classList.remove('hidden');
+        }
 
         updateBreadcrumb();
         renderRooms();
@@ -719,6 +786,25 @@
             if (!card) return;
             navigateToRoom(card.dataset.roomId);
         });
+
+        // Video card click handler (for recent videos section)
+        const recentVideosContainer = document.getElementById('recentVideosContainer');
+        if (recentVideosContainer) {
+            recentVideosContainer.addEventListener('click', (e) => {
+                const card = e.target.closest('.video-card');
+                if (!card) return;
+                e.preventDefault();
+                e.stopPropagation();
+                const roomId = card.dataset.roomId;
+                const videoIndex = parseInt(card.dataset.videoIndex, 10);
+                if (state.data && state.data.rooms) {
+                    const room = state.data.rooms.find(r => r.id === roomId);
+                    if (room && room.videos && room.videos[videoIndex]) {
+                        openVideoModal(room.videos[videoIndex]);
+                    }
+                }
+            });
+        }
 
         // Breadcrumb navigation
         elements.breadcrumb.addEventListener('click', (e) => {
@@ -836,6 +922,9 @@
             window.location.hash = '';
             elements.roomDetail.classList.add('hidden');
             elements.roomsContainer.classList.remove('hidden');
+            if (elements.recentVideosSection) {
+                elements.recentVideosSection.classList.remove('hidden');
+            }
             updateBreadcrumb();
         }
 
@@ -854,6 +943,7 @@
         elements.noResults.classList.add('hidden');
 
         // Update breadcrumb
+        elements.breadcrumb.classList.remove('hidden');
         elements.breadcrumb.innerHTML = `
             <a href="#" data-view="home">Sākums</a>
             <span>/</span>

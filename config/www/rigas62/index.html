@@ -85,7 +85,7 @@
     <!-- Main Content -->
     <main class="main-content">
         <!-- Breadcrumb Navigation -->
-        <nav class="breadcrumb" id="breadcrumb">
+        <nav class="breadcrumb hidden" id="breadcrumb">
             <a href="#" data-view="home">Sākums</a>
         </nav>
 
@@ -96,6 +96,14 @@
         <!-- Room Grid/List -->
         <section id="roomsContainer" class="rooms-container grid-view">
             <!-- Populated dynamically -->
+        </section>
+
+        <!-- Recent Videos Section -->
+        <section id="recentVideosSection" class="recent-videos-section">
+            <h2 class="section-title">Jaunākie video</h2>
+            <div id="recentVideosContainer" class="rooms-container grid-view">
+                <!-- Populated dynamically -->
+            </div>
         </section>
 
         <!-- Room Detail View -->
@@ -133,6 +141,7 @@
         </div>
     </main>
 
+    <!-- AUTH DISABLED FOR LOCAL TESTING - ENABLE BEFORE PUSH
     <script>
         // Auth check - redirect to login if not authenticated
         (function() {
@@ -142,6 +151,7 @@
             }
         })();
     </script>
+    -->
     <script src="app.js"></script>
 </body>
 </html>
