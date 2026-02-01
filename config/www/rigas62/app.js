@@ -39,7 +39,6 @@
         videoHashtags: document.getElementById('videoHashtags'),
         closeModal: document.getElementById('closeModal'),
         themeToggle: document.getElementById('themeToggle'),
-        viewToggle: document.getElementById('viewToggle'),
         noResults: document.getElementById('noResults'),
         offlineIndicator: document.getElementById('offlineIndicator'),
         recentVideosSection: document.getElementById('recentVideosSection'),
@@ -173,10 +172,10 @@
         }
 
         elements.recentVideosSection.classList.remove('hidden');
-        elements.recentVideosContainer.innerHTML = allVideos.map(video => createVideoCard(video)).join('');
+        elements.recentVideosContainer.innerHTML = allVideos.map(video => createRecentVideoCard(video)).join('');
     }
 
-    function createVideoCard(video) {
+    function createRecentVideoCard(video) {
         const thumbnailUrl = video.thumbnail
             ? `media/thumbnails/${video.thumbnail}`
             : 'data:image/svg+xml,' + encodeURIComponent(`
@@ -638,26 +637,13 @@
 
     function applyViewMode() {
         const container = elements.roomsContainer;
-        const gridIcon = elements.viewToggle.querySelector('.grid-icon');
-        const listIcon = elements.viewToggle.querySelector('.list-icon');
-
         if (state.viewMode === 'grid') {
             container.classList.remove('list-view');
             container.classList.add('grid-view');
-            gridIcon.classList.remove('hidden');
-            listIcon.classList.add('hidden');
         } else {
             container.classList.remove('grid-view');
             container.classList.add('list-view');
-            gridIcon.classList.add('hidden');
-            listIcon.classList.remove('hidden');
         }
-    }
-
-    function toggleViewMode() {
-        state.viewMode = state.viewMode === 'grid' ? 'list' : 'grid';
-        localStorage.setItem('rigas62-view', state.viewMode);
-        applyViewMode();
     }
 
     // ========================================
@@ -836,9 +822,6 @@
 
         // Theme toggle
         elements.themeToggle.addEventListener('click', toggleTheme);
-
-        // View toggle
-        elements.viewToggle.addEventListener('click', toggleViewMode);
 
         // URL hash change
         window.addEventListener('hashchange', handleUrlHash);
